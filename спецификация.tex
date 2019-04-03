@@ -266,43 +266,22 @@
 Прописные и строчные буквы считаются различными. Идентификатор не может совпадать ни с каким ключевым словом. Ключевые слова языка записываются как строчными, так и заглавными буквами. Ниже приведён список ключевых слов:        
 \begin{multicols}{3}
 \bf
-area
-
-Arh2
-
-Arh4
-
-Arh6
-
-ast
-
-ast1
-
-ast3
-
-ast5
-
-ast7
 
 better
 
 big
 
-define
+const
 
-Difficulty1
-
-Difficulty3
-
-Difficulty5
-
-Difficulty7
+clean
 
 else
 
 example
 
 false
+
+for
 
 full1
 
@@ -328,9 +307,13 @@ log5
 
 log7
 
+main
+
 negative
 
 number
+
+perem
 
 question
 
@@ -342,6 +325,8 @@ question4
 
 small
 
+summ
+
 sign
 
 square
@@ -350,11 +335,13 @@ string
 
 time
 
+then
+
 true
 
 Wrong
 
-union
+usl
 
 Zero
 
@@ -742,14 +729,14 @@ Zero
 
 \textcolor{Green}{%
 \syntax{%
-\synt{описание_переменных}$\to$\textcolor{Black}{\textbf{перем}} \synt{группа_переменных} \textcolor{Black}{:} \synt{простейшее_определение_типа}\\
+\synt{описание_переменных}$|$\textcolor{Black}{\textbf{perem}} \synt{группа_переменных} \textcolor{Black}{:} \synt{простейшее_определение_типа}\\
 \{\textcolor{Black}{;}\synt{группа_переменных} \textcolor{Black}{:} \synt{простейшее_определение_типа}\}\\
 %
-\indent\synt{группа_переменных}$\to$\synt{переменная}\{\textcolor{Black}{,} \synt{переменная}\}\\
+\indent\synt{группа_переменных}$|$\synt{переменная}\{\textcolor{Black}{,} \synt{переменная}\}\\
 %
-\indent\synt{переменная}$\to$\synt{имя_переменной}\\
+\indent\synt{переменная}$|$\synt{имя_переменной}\\
 %
-\indent\synt{имя_переменной}$\to$\synt{идентификатор}
+\indent\synt{имя_переменной}$|$\synt{идентификатор}
 }}
 
 Необязательная звёздочка после имени переменной означает, что переменная доступна из других модулей. Отсутствие звёздочки означает недоступность переменной из других модулей.
@@ -759,16 +746,16 @@ Zero
 
 \textcolor{Green}{%
 \syntax{%
-\synt{описание_констант}$\to$\\
-\textcolor{Black}{\textbf{конст}} \synt{имя_константы} \textcolor{Black}{:} \synt{простейшее_определение_типа} \textcolor{Black}{\texttt{=}} %
+\synt{описание_констант}$|$\\
+\textcolor{Black}{\textbf{const}} \synt{имя_константы} \textcolor{Black}{:} \synt{простейшее_определение_типа} \textcolor{Black}{\texttt{=}} %
 \synt{значение_константы}\\
 \{\textcolor{Black}{;}\synt{имя_константы}\textcolor{Black}{:} \synt{простейшее_определение_типа} \textcolor{Black}{\texttt{=}} %
 \synt{значение_константы}\}\\
 %
-\indent\synt{значение_константы}$\to$\synt{выражение}|%
-\textcolor{Black}{\texttt{[}}\synt{значение_константы}\{\textcolor{Black}{,} \synt{значение_константы}\}\textcolor{Black}{\texttt{]}}\\
+\indent\synt{значение_константы}$|$\synt{выражение}|%
+\textcolor{Black}{\texttt{(}}\synt{значение_константы}\{\textcolor{Black}{,} \synt{значение_константы}\}\textcolor{Black}{\texttt{)}}\\
 %
-\indent\synt{имя_константы}$\to$\synt{идентификатор}
+\indent\synt{имя_константы}$|$\synt{идентификатор}
 }}
 
     \subsection{Описание функций}
@@ -776,24 +763,24 @@ Zero
 
 \textcolor{Green}{%
 \syntax{%
-\synt{описание_функции}$\to$[\textcolor{Black}{\textbf{головная}}|\textcolor{Black}{\textbf{чистая}}] \textcolor{Black}{\textbf{функция}} \synt{имя_функции} %
-\synt{сигнатура}\text{(}\synt{реализация}|\textcolor{Black}{;})
+\synt{описание_функции}$|$(\textcolor{Black}{\textbf{main}}/\textcolor{Black}{\textbf{clean}}) \textcolor{Black}{\textbf{функция}} \synt{имя_функции} %
+\synt{сигнатура}\text{[}\synt{реализация}|\textcolor{Black}{;}]
 \\
-\indent\synt{реализация}$\to$\textcolor{Black}{\texttt{\{}} \{\synt{описание}|\synt{операторы}\} \textcolor{Black}{\texttt{\}}}\\
+\indent\synt{реализация}$|$\textcolor{Black}{\texttt{\{}} \{\synt{описание}/\synt{операторы}\} \textcolor{Black}{\texttt{\}}}\\
 %
-\indent\synt{операторы}$\to$\synt{оператор}\{\textcolor{Black}{;} \synt{оператор}\}\\
+\indent\synt{операторы}$|$\synt{оператор}\{\textcolor{Black}{;} \synt{оператор}\}\\
 %
-\indent\synt{имя_функции}$\to$\synt{идентификатор}
+\indent\synt{имя_функции}$|$\synt{идентификатор}
 }}
 
 
-Необязательное ключевое слово \textbf{головной} означает, что выполнение модуля начинается с этой функции. Функций с атрибутом \textbf{головной} в модуле может быть не более одной.
+Необязательное ключевое слово \textbf{main} означает, что выполнение модуля начинается с этой функции. Функций с атрибутом \textbf{main} в модуле может быть не более одной.
     
-Необязательное ключевое слово \textbf{чистая} означает, что функция не имеет побочных эффектов.   
+Необязательное ключевое слово \textbf{clean} означает, что функция не имеет побочных эффектов.   
    
 \section{Выражения}
 
-Синтаксис выражений с помощью РБНФ можно записать так:
+Синтаксис выражений можно записать так:
 
 \textcolor{Green}{\syntax{\\
 \indent\synt{выражение}$\to$\synt{выражение}$_0$[\synt{операция_присваивания} \synt{выражение}]\\
@@ -884,175 +871,60 @@ Zero
 Синтаксис условного оператора:
 
 \noindent\textcolor{Green}{\syntax{%
-\noindent\textcolor{Black}{\textbf{если}}\textcolor{Black}{\texttt{(}}\synt{условие}\textcolor{Black}{\texttt{)}}\textcolor{Black}{\textbf{то}}%\\
-\textcolor{Black}{\texttt{\{}} \{\synt{описание}|\synt{операторы}\} \textcolor{Black}{\texttt{\}}}\\
-\{\textcolor{Black}{\textbf{инес}}\textcolor{Black}{\texttt{(}}\synt{условие}\textcolor{Black}{\texttt{)}}\textcolor{Black}{\textbf{то}}%\\
-\textcolor{Black}{\texttt{\{}} \{\synt{описание}|\synt{операторы}\} \textcolor{Black}{\texttt{\}}}\}\\
-\text{[}\textcolor{Black}{\textbf{иначе}}\textcolor{Black}{\texttt{\{}} \{\synt{описание}|\synt{операторы}\} \textcolor{Black}{\texttt{\}}}]%
+\noindent\textcolor{Black}{\textbf{if}}\textcolor{Black}{\texttt{[}}\synt{условие}\textcolor{Black}{\texttt{]}}\textcolor{Black}{\textbf{then}}%\\
+\textcolor{Black}{\texttt{\{}} \{\synt{описание}/\synt{операторы}\} \textcolor{Black}{\texttt{\}}}\\
+\{\textcolor{Black}{\textbf{usl}}\textcolor{Black}{\texttt{[}}\synt{условие}\textcolor{Black}{\texttt{]}}\textcolor{Black}{\textbf{then}}%\\
+\textcolor{Black}{\texttt{\{}} \{\synt{описание}/\synt{операторы}\} \textcolor{Black}{\texttt{\}}}\}\\
+\text{(}\textcolor{Black}{\textbf{else}}\textcolor{Black}{\texttt{\{}} \{\synt{описание}/\synt{операторы}\} \textcolor{Black}{\texttt{\}}})%
 }}
 
 Здесь \textcolor{Green}{\syntax{\synt{условие}}} --- это логическое выражение, а
-\textcolor{Green}{\syntax{\textcolor{Black}{\textbf{инес}}\textcolor{Black}{\texttt{(}}\synt{условие}\textcolor{Black}{\texttt{)}}\textcolor{Black}{\textbf{то}}%\\
+\textcolor{Green}{\syntax{\textcolor{Black}{\textbf{usl}}\textcolor{Black}{\texttt{(}}\synt{условие}\textcolor{Black}{\texttt{)}}\textcolor{Black}{\textbf{then}}%\\
 \textcolor{Black}{\texttt{\{}} \{\synt{описание}|\synt{операторы}\} \textcolor{Black}{\texttt{\}}} }} является сокращённой формой для
-\textcolor{Green}{\syntax{\textcolor{Black}{\textbf{иначе}}\textcolor{Black}{\texttt{\{}} \textcolor{Black}{\textbf{если}}\textcolor{Black}{\texttt{(}}\synt{условие}%
-\textcolor{Black}{\texttt{)}}\textcolor{Black}{\textbf{то}}%\\
+\textcolor{Green}{\syntax{\textcolor{Black}{\textbf{else}}\textcolor{Black}{\texttt{\{}} \textcolor{Black}{\textbf{if}}\textcolor{Black}{\texttt{(}}\synt{условие}%
+\textcolor{Black}{\texttt{)}}\textcolor{Black}{\textbf{then}}%\\
 \textcolor{Black}{\texttt{\{}} \{\synt{описание}|\synt{операторы}\} \textcolor{Black}{\texttt{\}}} \textcolor{Black}{\texttt{\}}}%
 }}.
 
-    \subsection{Оператор выбора}
-
-Синтаксис оператора выбора:
-
-\textcolor{Green}{\syntax{%
-\synt{оператор_выбора}$\to$\textcolor{Black}{\textbf{выбери}}\textcolor{Black}{\texttt{(}}\synt{S}\textcolor{Black}{\texttt{)}}\textcolor{Black}{\textbf{из}}%
-\textcolor{Black}{\texttt{\{}}\\
-\synt{список_значений_для_ветви} \textcolor{Black}{\texttt{:}} \textcolor{Black}{\texttt{\{}}\synt{ветвь}\textcolor{Black}{\texttt{\}}}\\
-\{\synt{список_значений_для_ветви} \textcolor{Black}{\texttt{:}} \textcolor{Black}{\texttt{\{}}\synt{ветвь}\textcolor{Black}{\texttt{\}}}\}\\
-\text{[}\textcolor{Black}{\textbf{иначе}}\textcolor{Black}{\texttt{\{}}\synt{ветвь_иначе}\textcolor{Black}{\texttt{\}}}]\textcolor{Black}{\texttt{\}}}\\
-%
-\indent\synt{список_значений_для_ветви}$\to$\synt{значение_для_ветви}\{\textcolor{Black}{\texttt{,}} \synt{значение_для_ветви}\}\\
-%
-\indent\synt{значение_для_ветви}$\to$\synt{выражение}[\textcolor{Black}{\texttt{..}}\synt{выражение}]\\
-%
-\indent\synt{ветвь}$\to$\{\synt{описание}|\synt{операторы}\}\\
-%
-\indent\synt{ветвь_иначе}$\to$\{\synt{описание}|\synt{операторы}\}\\
-%
-\indent\synt{S}$\to$\synt{выражение}
-}}
-
-Оператор выбора определяет выбор и выполнение операторов на основе значения выражения \textcolor{Green}{\syntax{\synt{S}}}, которое должно быть выражением
-целочисленного, перечислимого, или символьного типа.
-
-Оператор выполняется так. Сначала вычисляется \textcolor{Green}{\syntax{\synt{S}}}, а затем выполняется та ветвь (т.е. последовательность операторов),
-соответствующий которой список значений содержит значение выражения \textcolor{Green}{\syntax{\synt{S}}}. При этом можно указывать диапазоны значений,
-а именно, следующим образом: \texttt{A..B}, где \texttt{A} --- минимальное значение в диапазоне, \texttt{B} --- максимальное значение в диапазоне. Например,
-\texttt{1..2000}, \texttt{-7..7}. Значения в списках значений должны быть константами, которые можно вычислить на этапе компиляции, и ни одно значение не должно употребляться
-более одного раза. Если значения выражения \textcolor{Green}{\syntax{\synt{S}}} нет в списке значений ни для какой ветви, то выполняются операторы
-\textcolor{Green}{\syntax{\synt{ветвь_иначе}}}, если ключевое слово \textbf{иначе} присутствует. Если же ключевого слова \textbf{иначе} нет, то выполнение оператора выбора
-завершается.
-
-    \subsection{Оператор разбора значения алгебраического типа}
-Синтаксис оператора разбора:
-
-\textcolor{Green}{\syntax{%
-\synt{оператор_разбора}$\to$\textcolor{Black}{\textbf{разбор}}\textcolor{Black}{\texttt{(}}\synt{S}\textcolor{Black}{\texttt{)}}%
-\textcolor{Black}{\texttt{\{}}\\
-\synt{метка_разбора} \textcolor{Black}{\texttt{->}} \textcolor{Black}{\texttt{\{}}\synt{ветвь}\textcolor{Black}{\texttt{\}}}\\
-\{\synt{метка_разбора} \textcolor{Black}{\texttt{->}} \textcolor{Black}{\texttt{\{}}\synt{ветвь}\textcolor{Black}{\texttt{\}}}\}\\
-\text{[}\textcolor{Black}{\textbf{иначе}}\textcolor{Black}{\texttt{\{}}\synt{ветвь_иначе}\textcolor{Black}{\texttt{\}}}]\textcolor{Black}{\texttt{\}}}\\
-%
-\indent\synt{метка_разбора}$\to$\{\textcolor{Black}{ид}\textcolor{Black}{::}\}\textcolor{Black}{ид}\textcolor{Black}{\{..\}}\\
-%
-\indent\synt{ветвь}$\to$\{\synt{описание}|\synt{операторы}\}\\
-%
-\indent\synt{ветвь_иначе}$\to$\{\synt{описание}|\synt{операторы}\}\\
-%
-\indent\synt{S}$\to$\synt{выражение}
-}}
 
     \subsection{Операторы цикла}
-Операторы цикла организуют выполнение повторяющихся действий. Всего в языке есть четыре типа операторов цикла: оператор цикла с предусловием (оператор \textbf{\glqq пока\grqq}),
-оператор цикла с постусловием (оператор \textbf{\glqq повторяй\dots пока\grqq}), оператор \textbf{\glqq вечно повторяй\grqq}, оператор \textbf{\glqq для\grqq}. Опишем каждый из этих операторов.
-        \subsubsection{Оператор цикла с предусловием}
-Оператор цикла с предусловием выглядит так:
+Операторы цикла организуют выполнение повторяющихся действий. Всего в языке есть два типа операторов цикла: while и for. Опишем каждый из этих операторов.
+
+
+        \subsubsection{Оператор цикла while}
+Оператор цикла while выглядит так:
 \begin{center}
-\textcolor{Green}{\syntax{(\textcolor{Black}{\texttt{+|}}\synt{имя_цикла}\textcolor{Black}{\texttt{:}})\textcolor{Black}{\textbf{пока}}\textcolor{Black}{\texttt{[}}\synt{условие}%
-\textcolor{Black}{\texttt{]}}\textcolor{Black}{\texttt{\{}} \{\synt{описание}|\synt{операторы}\} \textcolor{Black}{\texttt{\}}} }}
+\textcolor{Black}{\textbf{while}}\textcolor{Black}{\texttt{[}}\synt{условие}%
+\textcolor{Black}{\texttt{]}}\textcolor{Black}{\texttt{\{}} \{\synt{описание}/\synt{операторы}\} \textcolor{Black}{\texttt{\} }}
 \end{center}
-Здесь \textcolor{Green}{\syntax{\synt{условие}}} --- это логическое выражение, а  \textcolor{Green}{\syntax{\synt{имя_цикла}}} --- идентификатор, являющийся именем цикла.
-Данный идентификатор можно использовать только в операторе выхода из цикла. Оператор \textbf{\glqq пока\grqq}\ выполняет тело цикла, пока логическое выражение
+Здесь \textcolor{Green}{\syntax{\synt{условие}}} --- это логическое выражение.
+Оператор \textbf{\glqq while\grqq}\ выполняет тело цикла, пока логическое выражение
 \textcolor{Green}{\syntax{\synt{условие}}} остаётся истинным. Истинность этого логического выражения проверяется перед каждым выполнением тела цикла (т.е.
 операторов \textcolor{Green}{\syntax{\synt{операторы}}}).
-        \subsubsection{Оператор цикла с постусловием}
-Оператор цикла с постусловием выглядит так:
-\begin{center}
-\textcolor{Green}{\syntax{(\textcolor{Black}{\texttt{+|}}\synt{имя_цикла}\textcolor{Black}{\texttt{:}})%
-\textcolor{Black}{\textbf{повторяй}}\textcolor{Black}{\texttt{\{}} \{\synt{описание}|\synt{операторы}\} \textcolor{Black}{\texttt{\}}}%
-\textcolor{Black}{\textbf{покуда}}\textcolor{Black}{\texttt{[}}\synt{условие}\textcolor{Black}{\texttt{]}} }}
-\end{center}
-Здесь \textcolor{Green}{\syntax{\synt{условие}}} --- это логическое выражение, а  \textcolor{Green}{\syntax{\synt{имя_цикла}}} --- идентификатор, являющийся именем цикла.
-Данный идентификатор можно использовать только в операторе выхода из цикла. Оператор цикла \textbf{\glqq повторяй\dots пока\grqq}\ выполняет тело цикла, пока логическое
-выражение \textcolor{Green}{\syntax{\synt{условие}}} остаётся истинным. Истинность этого логического выражения проверяется после каждого выполнения тела цикла (т.е.
-операторов \textcolor{Green}{\syntax{\synt{операторы}}}).
-
-        \subsubsection{Оператор цикла \glqq вечно повторяй\grqq}
-Оператор \textbf{\glqq повторяй\dots вечно\grqq} выглядит так:
-\begin{center}
-\textcolor{Green}{\syntax{(\textcolor{Black}{\texttt{+|}}\synt{имя_цикла}\textcolor{Black}{\texttt{:}})%
-\textcolor{Black}{\textbf{вечно}} \textcolor{Black}{\textbf{повторяй}}\textcolor{Black}{\texttt{\{}} \{\synt{описание}|\synt{операторы}\} \textcolor{Black}{\texttt{\}}} }}
-\end{center}
-Здесь \textcolor{Green}{\syntax{\synt{имя_цикла}}} --- идентификатор, являющийся именем цикла. Данный идентификатор можно использовать только в операторе выхода из цикла.
-Оператор \textbf{\glqq вечно повторяй\grqq} выполняется до тех пор, пока из него не будет совершён явный выход --- либо с помощью оператора выхода из цикла, либо с
-помощью оператора возврата из подпрограммы.
-    
     
 
-        \subsubsection{Оператор цикла \glqq для\grqq}
-Оператор цикла \textbf{\glqq для\grqq}\ выглядит так:
+        \subsubsection{Оператор цикла for}
+Оператор цикла \textbf{for}\ выглядит так:
 \begin{center}
-\textcolor{Green}{\syntax{(\textcolor{Black}{\texttt{+|}}\synt{имя_цикла}\textcolor{Black}{\texttt{:}})%
-\textcolor{Black}{\textbf{для}} \synt{v} \textcolor{Black}{\texttt{=}} \textcolor{Black}{\texttt{нач_знач}, }\textcolor{Black}{\texttt{кон_зн}}%
-(\textcolor{Black}{\texttt{, шаг}}) \textcolor{Black}{\texttt{\{}} \{\synt{описание}|\synt{операторы}\} \textcolor{Black}{\texttt{\}}} }}
+\textcolor{Black}{\textbf{for}}%
+[\synt{a} \textcolor{Black}{\texttt{=}} \textcolor{Black}{\texttt{нач_знач}, \synt{a} \textcolor{Black}{\texttt{=}} }\textcolor{Black}{\texttt{кон_зн}}\textcolor{Black}{\texttt{, шаг}}]%
+\textcolor{Black}{\texttt{\{}} \{\synt{описание}/\synt{операторы}\} \textcolor{Black}{\texttt{\} }}
 \end{center}
 
-Здесь \textcolor{Green}{\syntax{\synt{v}}} --- идентификатор, являющийся именем переменной цикла; \texttt{нач_знач} --- начальное значение переменной цикла;
+Здесь \textcolor{Green}{\syntax{\synt{a}}} --- идентификатор, являющийся именем переменной цикла; \texttt{нач_знач} --- начальное значение переменной цикла;
 \texttt{кон_знач} --- конечное значение переменной цикла; \texttt{шаг} --- шаг цикла. По умолчанию шаг равен единице. Величины \texttt{нач_знач}, \texttt{кон_знач} и
 \texttt{шаг} являются выражениями, вычисляемыми до начала цикла. Переменная цикла должна быть символьного, целочисленного или перечислимого типа. Выражения \texttt{нач_знач} и
-\texttt{кон_знач} должны иметь тип, совместимый с типом переменной \textcolor{Green}{\syntax{\synt{v}}}, а выражение \texttt{шаг} должно быть целочисленного типа.
+\texttt{кон_знач} должны иметь тип, совместимый с типом переменной \textcolor{Green}{\syntax{\synt{a}}}, а выражение \texttt{шаг} должно быть целочисленного типа.
 Менять в теле цикла значение переменной цикла нельзя.
 
-Смысл оператора цикла \textbf{\glqq для\grqq}:
 
-\noindent\textcolor{Green}{\syntax{%
-\textcolor{Black}{t$_1$} \textcolor{Black}{\texttt{:=}} \textcolor{Black}{\texttt{нач_знач};}\\
-\textcolor{Black}{t$_2$} \textcolor{Black}{\texttt{:=}} \textcolor{Black}{\texttt{кон_знач};}\\
-\textcolor{Black}{t$_3$} \textcolor{Black}{\texttt{:=}} \textcolor{Black}{\texttt{шаг};}\\
-\textcolor{Black}{\textbf{если}}\textcolor{Black}{\texttt{(}}\textcolor{Black}{t$_3$} \textcolor{Black}{\texttt{>}} \textcolor{Black}{0}\textcolor{Black}{\texttt{)}}%
-\textcolor{Black}{\textbf{то}}\\
-\textcolor{Black}{\texttt{\{}}\\
-\phantom{конец}\synt{v} \textcolor{Black}{\texttt{:=}} \textcolor{Black}{t$_1$}\textcolor{Black}{;}\\
-\phantom{конец}\textcolor{Black}{\textbf{пока}}\textcolor{Black}{\texttt{(}}\synt{v} \textcolor{Black}{\texttt{<=}} \textcolor{Black}{t$_2$}\textcolor{Black}{\texttt{)}}\\
-\phantom{конец}\textcolor{Black}{\texttt{\{}}\\
-\phantom{конецмоимс}\{\synt{описание}|\synt{операторы}\}\\
-\phantom{конецмоимс}\textcolor{Black}{\texttt{увелич}}\textcolor{Black}{\texttt{(}}\synt{v}\textcolor{Black}{\texttt{,}} \textcolor{Black}{t$_3$}\textcolor{Black}{\texttt{)}}\\
-\phantom{конец}\textcolor{Black}{\texttt{\}}}\\
-\textcolor{Black}{\texttt{\}}}\\
-\textcolor{Black}{\textbf{инес}}\textcolor{Black}{\texttt{(}}\textcolor{Black}{t$_3$} \textcolor{Black}{\texttt{<}} \textcolor{Black}{0}\textcolor{Black}{\texttt{)}}%
-\textcolor{Black}{\textbf{то}}\\
-\textcolor{Black}{\texttt{\{}}\\
-\phantom{конец}\synt{v} \textcolor{Black}{\texttt{:=}} \textcolor{Black}{t$_1$}\textcolor{Black}{;}\\
-\phantom{конец}\textcolor{Black}{\textbf{пока}}\textcolor{Black}{\texttt{(}}\synt{v} \textcolor{Black}{\texttt{>=}} \textcolor{Black}{t$_2$}\textcolor{Black}{\texttt{)}}\\
-\phantom{конец}\textcolor{Black}{\texttt{\{}}\\
-\phantom{конецмоимс}\{\synt{описание}|\synt{операторы}\}\\
-\phantom{конецмоимс}\textcolor{Black}{\texttt{увелич}}\textcolor{Black}{\texttt{(}}\synt{v}\textcolor{Black}{\texttt{,}} \textcolor{Black}{t$_3$}\textcolor{Black}{\texttt{)}}\\
-\phantom{конец}\textcolor{Black}{\texttt{\}}}\\
-\textcolor{Black}{\texttt{\}}}\\
-\textcolor{Black}{\textbf{иначе}}\\
-\textcolor{Black}{\texttt{\{}}\\
-\phantom{конец}\synt{v} \textcolor{Black}{\texttt{:=}} \textcolor{Black}{t$_1$}\textcolor{Black}{;}\\
-\phantom{конец}\{\synt{описание}|\synt{операторы}\}\\
-\phantom{конец}\textcolor{Black}{\textbf{пока}}\textcolor{Black}{\texttt{(}}\textcolor{Black}{t$_1$} \textcolor{Black}{\texttt{!=}} \textcolor{Black}{t$_2$}%
-\textcolor{Black}{\texttt{)}}\\
-\phantom{конец}\textcolor{Black}{\texttt{\{}}\\
-\phantom{конецмоимс}\{\synt{описание}|\synt{операторы}\}\\
-\phantom{конец}\textcolor{Black}{\texttt{\}}}\\
-\textcolor{Black}{\texttt{\}}}\\
-\textcolor{Black}{\texttt{\}}}
-}}
+    \subsection{Оператор выхода из цикла break}
 
-    \subsection{Оператор выхода из цикла}
-
-Синтаксис оператора выхода из цикла:
+Синтаксис оператора выхода из цикла break:
 \begin{center}
-\textcolor{Green}{\syntax{\textcolor{Black}{\textbf{выйди}} (\textcolor{Black}{\textbf{из}} \synt{имя_цикла})}}
+\textcolor{Black}[\texttt{Цикл}]%
+\textcolor{Black}{\texttt{\{}} break \textcolor{Black}{\texttt{\} }}
 \end{center}
-Этот оператор совершает выход из с цикла с именем \textcolor{Green}{\syntax{\synt{имя_цикла}}}, если оно указано. Если же нет, то производится выход из текущего цикла.
-
-    \subsection{Оператор возврата из функции}
-Оператор возврата из подпрограммы совершает выход из функции. Если тип возвращаемого функцией значения --- тип \textbf{ничто}, то выход из подпрограммы выполняется
-с помощью оператора возврата, имеющего вид \textbf{возврат}. Если же тип возвращаемого функцией значения не эквивалентен типу \textbf{ничто}, то возврат выполняется
-с помощью оператора возврата, имеющего вид \textbf{возврат} \textcolor{Green}{\syntax{\synt{выражение}}}, причём тип выражения должен быть совместим с типом
-возвращаемого функцией значения.
+Когда оператор break выполняется в цикле, то досрочно прерывается исполнение оператора цикла, и управление передаётся следующему оператору после цикла.
          
 \end{document}
